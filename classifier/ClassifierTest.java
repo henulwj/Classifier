@@ -6,36 +6,36 @@ import java.util.Scanner;
 
 public class ClassifierTest{
 
-	//¿ÕµÄ¹¹Ôìº¯Êı
+	//ç©ºçš„æ„é€ å‡½æ•°
 	public ClassifierTest(){
 		
 	}
 	
-	//²âÊÔÊı¾İ¼¯,0´ú±íisp,1´ú±íwide,Ä¬ÈÏÊÇisp
+	//æµ‹è¯•æ•°æ®é›†,0ä»£è¡¨isp,1ä»£è¡¨wide,é»˜è®¤æ˜¯isp
 	private int testDataSet = 0;
 
-	//Ã¿Ò»ÖÖÓ¦ÓÃÓĞ±êÇ©Á÷ÊıÄ¿(50,60,70......140)£¬Ä¬ÈÏÊÇ100
+	//æ¯ä¸€ç§åº”ç”¨æœ‰æ ‡ç­¾æµæ•°ç›®(50,60,70......140)ï¼Œé»˜è®¤æ˜¯100
 	private int numLabelFlow = 100;
 	
-	//ÎŞ±êÇ©Á÷ÊıÄ¿(1000,2000,3000......10000)£¬Ä¬ÈÏÊÇ5000
+	//æ— æ ‡ç­¾æµæ•°ç›®(1000,2000,3000......10000)ï¼Œé»˜è®¤æ˜¯5000
 	private int numUnlabelFlow = 5000;
 	
-	//Î´ÖªÓ¦ÓÃÊıÄ¿(0,1,2,3)£¬Ä¬ÈÏÊÇ0
+	//æœªçŸ¥åº”ç”¨æ•°ç›®(0,1,2,3)ï¼Œé»˜è®¤æ˜¯0
 	private int numUnknownApp = 0;
 	
-	//¾ÛÀà´ØÊıÄ¿(100,200,300......1000)£¬Ä¬ÈÏÊÇ400
+	//èšç±»ç°‡æ•°ç›®(100,200,300......1000)ï¼Œé»˜è®¤æ˜¯400
 	private int numClusters = 400;
 	
-	//·ÖÀà·½·¨Ñ¡Ôñ£¬0´ú±íÎÒÃÇµÄ¶î·½·¨£¬´ú±íErmanµÄ·½·¨
+	//åˆ†ç±»æ–¹æ³•é€‰æ‹©ï¼Œ0ä»£è¡¨æˆ‘ä»¬çš„é¢æ–¹æ³•ï¼Œä»£è¡¨Ermançš„æ–¹æ³•
 	private int functionType = 0;
 	
-	//ÑµÁ·¼¯ÖĞÓĞ±êÇ©Á÷ÎÄ¼şÂ·¾¶
+	//è®­ç»ƒé›†ä¸­æœ‰æ ‡ç­¾æµæ–‡ä»¶è·¯å¾„
 	private String labelFilePath = "";
 	
-	//ÑµÁ·¼¯ÖĞÎŞ±êÇ©Á÷ÎÄ¼şÂ·¾¶
+	//è®­ç»ƒé›†ä¸­æ— æ ‡ç­¾æµæ–‡ä»¶è·¯å¾„
 	private String unlabelFilePath = "";
 	
-	//²âÊÔÊı¾İ¼¯ÎÄ¼şÂ·¾¶
+	//æµ‹è¯•æ•°æ®é›†æ–‡ä»¶è·¯å¾„
 	private String testFilePath = "";
 	
 	public int getTestDataSet() {
@@ -125,14 +125,14 @@ public class ClassifierTest{
 		this.testFilePath = testFilePath;
 	}
 
-	//²ÉÓÃÔ­ÎÄ×÷ÕßÌá¹©µÄÊı¾İ¼¯²âÊÔ£¬´Ó¿ØÖÆÌ¨¶ÁÈ¡Êı¾İ²ÎÊı
+	//é‡‡ç”¨åŸæ–‡ä½œè€…æä¾›çš„æ•°æ®é›†æµ‹è¯•ï¼Œä»æ§åˆ¶å°è¯»å–æ•°æ®å‚æ•°
 	public void readDataArgs(){
-		labelFilePath = "data/";	//ÓĞ±êÇ©Êı¾İ¼¯ÎÄ¼şÂ·¾¶
-		unlabelFilePath = "data/";	//ÎŞ±êÇ©Êı¾İ¼¯ÎÄ¼şÂ·¾¶
-		testFilePath = "data/";	//²âÊÔÊı¾İ¼¯ÎÄ¼şÂ·¾¶
-		System.out.println("***************²âÊÔÊı¾İÉèÖÃ*****************");
-		System.out.println("²âÊÔÊı¾İ¼¯(0:isp  1:wide)|Ã¿Ò»ÖÖÓ¦ÓÃÓĞ±êÇ©Á÷ÊıÄ¿|ÎŞ±êÇ©Á÷ÊıÄ¿|Î´ÖªÓ¦ÓÃÊıÄ¿|¾ÛÀà´ÖÊıÄ¿|·ÖÀà·½·¨(0:¸Ä½øµÄ·½·¨  1:ErmanµÄ·½·¨)");
-		Scanner scanner = new Scanner(System.in);	//´Ó¿ØÖÆÌ¨¶ÁÈ¡²ÎÊı
+		labelFilePath = "data/";	//æœ‰æ ‡ç­¾æ•°æ®é›†æ–‡ä»¶è·¯å¾„
+		unlabelFilePath = "data/";	//æ— æ ‡ç­¾æ•°æ®é›†æ–‡ä»¶è·¯å¾„
+		testFilePath = "data/";	//æµ‹è¯•æ•°æ®é›†æ–‡ä»¶è·¯å¾„
+		System.out.println("***************æµ‹è¯•æ•°æ®è®¾ç½®*****************");
+		System.out.println("æµ‹è¯•æ•°æ®é›†(0:isp  1:wide)|æ¯ä¸€ç§åº”ç”¨æœ‰æ ‡ç­¾æµæ•°ç›®|æ— æ ‡ç­¾æµæ•°ç›®|æœªçŸ¥åº”ç”¨æ•°ç›®|èšç±»ç²—æ•°ç›®|åˆ†ç±»æ–¹æ³•(0:æ”¹è¿›çš„æ–¹æ³•  1:Ermançš„æ–¹æ³•)");
+		Scanner scanner = new Scanner(System.in);	//ä»æ§åˆ¶å°è¯»å–å‚æ•°
 		this.setTestDataSet(scanner.nextInt());
 		this.setNumLabelFlow(scanner.nextInt());
 		this.setNumUnlabelFlow(scanner.nextInt());
@@ -140,21 +140,21 @@ public class ClassifierTest{
 		this.setNumClusters(scanner.nextInt());
 		this.setFunctionType(scanner.nextInt());
 		scanner.close();
-		if(this.testDataSet == 0){	//Èç¹ûÊÇispÊı¾İ¼¯£¬ÉèÖÃ¸÷ÎÄ¼şÂ·¾¶
+		if(this.testDataSet == 0){	//å¦‚æœæ˜¯ispæ•°æ®é›†ï¼Œè®¾ç½®å„æ–‡ä»¶è·¯å¾„
 			labelFilePath = labelFilePath+"isp/training/labelled/";
 			unlabelFilePath = unlabelFilePath+"isp/training/unlabelled/";
 			testFilePath = testFilePath+"isp/testing/";
 		}
-		if(this.testDataSet == 1){	//Èç¹ûÊÇwideÊı¾İ¼¯£¬ÉèÖÃ¸÷ÎÄ¼şÂ·¾¶
+		if(this.testDataSet == 1){	//å¦‚æœæ˜¯wideæ•°æ®é›†ï¼Œè®¾ç½®å„æ–‡ä»¶è·¯å¾„
 			labelFilePath = labelFilePath+"wide/training/labelled/";
 			unlabelFilePath = unlabelFilePath+"wide/training/unlabelled/";
 			testFilePath = testFilePath+"wide/testing/";
 		}
 		
-		labelFilePath = labelFilePath+this.numLabelFlow+"/";	//Ã¿¸öÓ¦ÓÃ±êÇ©Á÷ÊıÄ¿¶ÔÓ¦ÎÄ¼ş¼Ğ
-		unlabelFilePath = unlabelFilePath+this.numUnlabelFlow+"/";	//ÎŞ±êÇ©Á÷ÊıÄ¿¶ÔÓ¦ÎÄ¼ş¼Ğ
+		labelFilePath = labelFilePath+this.numLabelFlow+"/";	//æ¯ä¸ªåº”ç”¨æ ‡ç­¾æµæ•°ç›®å¯¹åº”æ–‡ä»¶å¤¹
+		unlabelFilePath = unlabelFilePath+this.numUnlabelFlow+"/";	//æ— æ ‡ç­¾æµæ•°ç›®å¯¹åº”æ–‡ä»¶å¤¹
 		if(this.testDataSet == 0){
-			switch (this.numUnknownApp) {	//Î´ÖªÓ¦ÓÃÊıÄ¿¸Ä±äÊ±
+			switch (this.numUnknownApp) {	//æœªçŸ¥åº”ç”¨æ•°ç›®æ”¹å˜æ—¶
 				case 0:
 					labelFilePath = labelFilePath+"labelled.arff";
 					unlabelFilePath = unlabelFilePath+"unlabelled-origin.arff";
@@ -207,52 +207,52 @@ public class ClassifierTest{
 		}
 	}
 	
-	//¶ÁÈ¡²âÊÔ¼¯ÎÄ¼şÂ·¾¶£¬ÒÔ¼°²âÊÔ²ÎÊı
+	//è¯»å–æµ‹è¯•é›†æ–‡ä»¶è·¯å¾„ï¼Œä»¥åŠæµ‹è¯•å‚æ•°
 	public void readFileArgs()
 	{
-		System.out.println("*****************ÊäÈë²âÊÔÎÄ¼şÂ·¾¶********************");
+		System.out.println("*****************è¾“å…¥æµ‹è¯•æ–‡ä»¶è·¯å¾„********************");
 		
-		Scanner scanner = new Scanner(System.in);	//´Ó¿ØÖÆÌ¨¶ÁÈ¡²ÎÊı
-		System.out.print("ÑµÁ·¼¯ÖĞÓĞ±êÇ©Á÷ÎÄ¼şÂ·¾¶£º");
+		Scanner scanner = new Scanner(System.in);	//ä»æ§åˆ¶å°è¯»å–å‚æ•°
+		System.out.print("è®­ç»ƒé›†ä¸­æœ‰æ ‡ç­¾æµæ–‡ä»¶è·¯å¾„ï¼š");
 		this.labelFilePath = scanner.nextLine();
-		System.out.print("ÑµÁ·¼¯ÖĞÎŞ±êÇ©Á÷ÎÄ¼şÂ·¾¶£º");
+		System.out.print("è®­ç»ƒé›†ä¸­æ— æ ‡ç­¾æµæ–‡ä»¶è·¯å¾„ï¼š");
 		this.unlabelFilePath = scanner.nextLine();
-		System.out.print("²âÊÔ¼¯ÎÄ¼şÂ·¾¶£º");
+		System.out.print("æµ‹è¯•é›†æ–‡ä»¶è·¯å¾„ï¼š");
 		this.testFilePath = scanner.nextLine();
-		System.out.print("¾ÛÀà´ØÊıÄ¿£º");
+		System.out.print("èšç±»ç°‡æ•°ç›®ï¼š");
 		this.numClusters = Integer.parseInt(scanner.nextLine());
-		System.out.print("²âÊÔ·½·¨(0:¸Ä½øµÄ·½·¨   1:ErmanµÄ·½·¨)£º");
+		System.out.print("æµ‹è¯•æ–¹æ³•(0:æ”¹è¿›çš„æ–¹æ³•   1:Ermançš„æ–¹æ³•)ï¼š");
 		this.functionType = Integer.parseInt(scanner.nextLine());
 		scanner.close();
 	}
 	
-	//²âÊÔ·ÖÀàÆ÷
+	//æµ‹è¯•åˆ†ç±»å™¨
 	public void testClassifier() throws FileNotFoundException, IOException,Exception{
-		System.out.print("²âÊÔÊı¾İ¼¯ÊÇ·ñ²ÉÓÃÔ­ÎÄ×÷ÕßÌá¹©Êı¾İ¼¯(Y/N)£º");
-		Scanner scanner = new Scanner(System.in);	//´Ó¿ØÖÆÌ¨¶ÁÈ¡²ÎÊı
+		System.out.print("æµ‹è¯•æ•°æ®é›†æ˜¯å¦é‡‡ç”¨åŸæ–‡ä½œè€…æä¾›æ•°æ®é›†(Y/N)ï¼š");
+		Scanner scanner = new Scanner(System.in);	//ä»æ§åˆ¶å°è¯»å–å‚æ•°
 		String tmpstr = scanner.nextLine();
 		if(tmpstr.toLowerCase().equals("y")){
-			this.readDataArgs();	//¶ÁÈ¡¿ØÖÆÌ¨ÊäÈë²ÎÊı£¬»ñÈ¡ÎÄ¼şÂ·¾¶
+			this.readDataArgs();	//è¯»å–æ§åˆ¶å°è¾“å…¥å‚æ•°ï¼Œè·å–æ–‡ä»¶è·¯å¾„
 		}
 		else if(tmpstr.toLowerCase().equals("n")){
 			this.readFileArgs();
 		}
 		else{
-			System.out.println("ÊäÈëÓĞÎó£¡");
+			System.out.println("è¾“å…¥æœ‰è¯¯ï¼");
 			return;
 		}
 		
 		FlowsProClassifier flowsProClassifier = new FlowsProClassifier();		
-		flowsProClassifier.setLabelInsts(flowsProClassifier.getFileInstances(this.labelFilePath));	//¶ÁÈ¡ÓĞ±êÇ©Á÷Êı¾İ¼¯
-		flowsProClassifier.setUnlabelInsts(flowsProClassifier.getFileInstances(this.unlabelFilePath));	//¶ÁÈ¡ÎŞ±êÇ©Á÷Êı¾İ¼¯
-		flowsProClassifier.preserveOriginLable(flowsProClassifier.getLabelInsts(),flowsProClassifier.getUnlabelInsts());	//±£´æÑµÁ·¼¯µÄÔ­Ê¼Á÷±êÇ©
-		if(this.functionType == 0){	//ÎÒÃÇµÄ·½·¨ÓĞÁ÷±êÇ©ÔöÖ³£¬ErmanµÄ·½·¨Ã»ÓĞ
+		flowsProClassifier.setLabelInsts(flowsProClassifier.getFileInstances(this.labelFilePath));	//è¯»å–æœ‰æ ‡ç­¾æµæ•°æ®é›†
+		flowsProClassifier.setUnlabelInsts(flowsProClassifier.getFileInstances(this.unlabelFilePath));	//è¯»å–æ— æ ‡ç­¾æµæ•°æ®é›†
+		flowsProClassifier.preserveOriginLable(flowsProClassifier.getLabelInsts(),flowsProClassifier.getUnlabelInsts());	//ä¿å­˜è®­ç»ƒé›†çš„åŸå§‹æµæ ‡ç­¾
+		if(this.functionType == 0){	//æˆ‘ä»¬çš„æ–¹æ³•æœ‰æµæ ‡ç­¾å¢æ®–ï¼ŒErmançš„æ–¹æ³•æ²¡æœ‰
 			flowsProClassifier.flowLabelPropagation();
 		}
-		flowsProClassifier.setNumPreClusters(this.numClusters);	//ÉèÖÃ¾ÛÀà´ØÊıÄ¿
-		System.out.println("ÕıÔÚ½øĞĞ·ÖÀà²âÊÔ¡£¡£¡£¡£¡£¡£");
-		flowsProClassifier.constructNCC();	//¹¹Ôì·ÖÀàÆ÷
-		flowsProClassifier.evaluateClassifier(flowsProClassifier.getFileInstances(this.testFilePath));	//ÓÃ·ÖÀàÆ÷·ÖÀà²âÊÔÊı¾İ¼¯£¬µÈµ½·ÖÀà½á¹û
+		flowsProClassifier.setNumPreClusters(this.numClusters);	//è®¾ç½®èšç±»ç°‡æ•°ç›®
+		System.out.println("æ­£åœ¨è¿›è¡Œåˆ†ç±»æµ‹è¯•ã€‚ã€‚ã€‚ã€‚ã€‚ã€‚");
+		flowsProClassifier.constructNCC();	//æ„é€ åˆ†ç±»å™¨
+		flowsProClassifier.evaluateClassifier(flowsProClassifier.getFileInstances(this.testFilePath));	//ç”¨åˆ†ç±»å™¨åˆ†ç±»æµ‹è¯•æ•°æ®é›†ï¼Œç­‰åˆ°åˆ†ç±»ç»“æœ
 		
 	}
 	

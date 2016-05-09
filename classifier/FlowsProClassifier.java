@@ -17,45 +17,45 @@ import weka.core.Utils;
 
 public class FlowsProClassifier {
 	
-	//ÎŞ²Ğ¿Õ¹¹Ôìº¯Êı
+	//æ— æ®‹ç©ºæ„é€ å‡½æ•°
 	public FlowsProClassifier(){
 		
 	}
 	
-	//ÓĞ±êÇ©Êı¾İ¼¯
+	//æœ‰æ ‡ç­¾æ•°æ®é›†
 	private Instances labelInsts;
 	
-	//ÎŞ±êÇ©Êı¾İ¼¯
+	//æ— æ ‡ç­¾æ•°æ®é›†
 	private Instances unlabelInsts;
 	
-	//ÑµÁ·¼¯Ô­Ê¼Êı¾İ±êÇ©
+	//è®­ç»ƒé›†åŸå§‹æ•°æ®æ ‡ç­¾
 	private FastVector originLabel;
 	
-	//Á÷±êÇ©ÔöÖ³ºóµÄÑµÁ·¼¯  
+	//æµæ ‡ç­¾å¢æ®–åçš„è®­ç»ƒé›†  
 	private Instances totalInsts;
 	
-	//¾ÛÀàÖĞĞÄµã
+	//èšç±»ä¸­å¿ƒç‚¹
 	private Instances clusterCentroids;
 	
-	//¾ÛÀàÖ®Ç°ÉèÖÃµÄ¾ÛÀà´ØÊıÄ¿
+	//èšç±»ä¹‹å‰è®¾ç½®çš„èšç±»ç°‡æ•°ç›®
 	private int numPreClusters;
 	
-	//¾ÛÀàÖ®ºó²úÉúµÄ¾ÛÀà´ØÊıÄ¿  
+	//èšç±»ä¹‹åäº§ç”Ÿçš„èšç±»ç°‡æ•°ç›®  
 	private int numClusters;
 	
-	//K-Means·½·¨²úÉúµÄ¾ÛÀà´Ø
+	//K-Meansæ–¹æ³•äº§ç”Ÿçš„èšç±»ç°‡
 	private Instances[] clusterGroup;
 	
-	//K-Means·½·¨µÄ¾ÛÀàÖ®ºóµÄÎó²îÆ½·½ºÍ
+	//K-Meansæ–¹æ³•çš„èšç±»ä¹‹åçš„è¯¯å·®å¹³æ–¹å’Œ
 	double squaredError;
 
-	//K-Means·½·¨²úÉúµÄ¾ÛÀà´ØµÄ±êÇ©id
+	//K-Meansæ–¹æ³•äº§ç”Ÿçš„èšç±»ç°‡çš„æ ‡ç­¾id
 	private int[] clusterClass;
 	
-	//K-Means·½·¨²úÉúµÄ¾ÛÀà´ØµÄ±êÇ©
+	//K-Meansæ–¹æ³•äº§ç”Ÿçš„èšç±»ç°‡çš„æ ‡ç­¾
 	private String[] clusterLabel;
 	
-	//K-Means·½·¨¼ÆËã¼ÆËãÁ½¸öÁ÷Ö®¼äµÄ¾àÀëµÄ·½·¨Àà
+	//K-Meansæ–¹æ³•è®¡ç®—è®¡ç®—ä¸¤ä¸ªæµä¹‹é—´çš„è·ç¦»çš„æ–¹æ³•ç±»
 	private DistanceFunction distanceFunction;
 	
 	public Instances getLabelInsts() {
@@ -154,7 +154,7 @@ public class FlowsProClassifier {
 		this.distanceFunction = distanceFunction;
 	}
 
-	//¶ÁÈ¡Êı¾İ¼¯ÎÄ¼ş×ª»»ÎªInstances
+	//è¯»å–æ•°æ®é›†æ–‡ä»¶è½¬æ¢ä¸ºInstances
 	public Instances getFileInstances( String fileName ) throws FileNotFoundException,IOException   {
 		
 		FileReader frData = new FileReader( fileName ); 
@@ -162,7 +162,7 @@ public class FlowsProClassifier {
 		return inst;
 	}
 	
-	//ºÏ²¢Á½¸ö¾ßÓĞÏàÍ¬ÊôĞÔµÄInstances
+	//åˆå¹¶ä¸¤ä¸ªå…·æœ‰ç›¸åŒå±æ€§çš„Instances
 	public Instances combineInstances(Instances srcA,Instances srcB){
 		Instances result = new Instances(srcA,srcA.numInstances()+srcB.numInstances());
 		for (int i = 0; i < srcA.numInstances(); i++) {
@@ -174,7 +174,7 @@ public class FlowsProClassifier {
 		return result;
 	}
 	
-	//±£´æÑµÁ·¼¯µÄÔ­Ê¼Á÷±êÇ©£¬¼ÆËãTraning PurityĞèÒªÓÃµ½
+	//ä¿å­˜è®­ç»ƒé›†çš„åŸå§‹æµæ ‡ç­¾ï¼Œè®¡ç®—Traning Purityéœ€è¦ç”¨åˆ°
 	public void preserveOriginLable(Instances label,Instances unlabel) {
 		Instances result = combineInstances(label, unlabel);
 		originLabel = new FastVector(result.numInstances());
@@ -192,7 +192,7 @@ public class FlowsProClassifier {
 	}
 	
 	
-	//±È¶ÔÈıÔª×é£¬½øĞĞÁ÷±êÇ©ÔöÖ³
+	//æ¯”å¯¹ä¸‰å…ƒç»„ï¼Œè¿›è¡Œæµæ ‡ç­¾å¢æ®–
 	public void flowLabelPropagation() {
 		Instance instA;
 		Instance instB;
@@ -201,7 +201,7 @@ public class FlowsProClassifier {
 			for (int j = 0; j < unlabelInsts.numInstances(); j++) {
 				instB=unlabelInsts.instance(j);				
 				if((instB.isMissing(instB.numAttributes()-1))){
-					//Êµ¼ÊÊ¹ÓÃµÄÊı¾İ¼¯»ã×ÜÃ»ÓĞĞ­Òé×Ö¶Î£¬¹ÊÔÚ´ËÖ»±È½ÏÄ¿µÄIPºÍÄ¿µÄ¶Ë¿Ú
+					//å®é™…ä½¿ç”¨çš„æ•°æ®é›†æ±‡æ€»æ²¡æœ‰åè®®å­—æ®µï¼Œæ•…åœ¨æ­¤åªæ¯”è¾ƒç›®çš„IPå’Œç›®çš„ç«¯å£
 					if(((instA.stringValue(2)).equals(instB.stringValue(2)))&&
 							(instA.value(3)==instB.value(3))){//&&(instA.stringValue(4)==instB.stringValue(4)
 						instB.setValue((instB.numAttributes()-1), instA.stringValue(instA.numAttributes()-1));
@@ -217,11 +217,11 @@ public class FlowsProClassifier {
 	}
 	
 	
-	//ÀûÓÃK-Means¾ÛÀà·½·¨¹¹Ôì·ÖÀàÆ÷
+	//åˆ©ç”¨K-Meansèšç±»æ–¹æ³•æ„é€ åˆ†ç±»å™¨
 	public void constructNCC() throws Exception {
-		totalInsts = this.combineInstances(labelInsts, unlabelInsts);	//ºÏ²¢ÓĞ±êÇ©Êı¾İ¼¯ºÍÎŞ±êÇ©Êı¾İ¼¯
-		int numPreLabelled = labelInsts.numInstances();	//ÓĞ±êÇ©Êı¾İ¼¯ÖĞµÄÁ÷µÄ¸öÊı
-		//¾ÛÀà²»ÓÃÎåÔª×é£¬¹ÊÉ¾³ıÎåÔª×é£¬ÓÉÓÚÊı¾İ¼¯ÖĞÃ»ÓĞĞ­Òé£¬¹ÊÔÚ´ËÖ»É¾³ıÔ´IP£¬Ô´¶Ë¿Ú£¬Ä¿µÄIP£¬Ä¿µÄ¶Ë¿Ú
+		totalInsts = this.combineInstances(labelInsts, unlabelInsts);	//åˆå¹¶æœ‰æ ‡ç­¾æ•°æ®é›†å’Œæ— æ ‡ç­¾æ•°æ®é›†
+		int numPreLabelled = labelInsts.numInstances();	//æœ‰æ ‡ç­¾æ•°æ®é›†ä¸­çš„æµçš„ä¸ªæ•°
+		//èšç±»ä¸ç”¨äº”å…ƒç»„ï¼Œæ•…åˆ é™¤äº”å…ƒç»„ï¼Œç”±äºæ•°æ®é›†ä¸­æ²¡æœ‰åè®®ï¼Œæ•…åœ¨æ­¤åªåˆ é™¤æºIPï¼Œæºç«¯å£ï¼Œç›®çš„IPï¼Œç›®çš„ç«¯å£
 		int num = 4;
 		while (num-- > 0){
 			totalInsts.deleteAttributeAt(0);
@@ -232,53 +232,53 @@ public class FlowsProClassifier {
 //		saver.setFile(new File("F:/isp-preprocess/afterFLPClustersInsts.arff"));
 //		saver.writeBatch();
 		
-		Attribute classAttr = totalInsts.attribute(totalInsts.numAttributes()-1);	//±£´æÁ÷±êÇ©ÊôĞÔ
-		FastVector classVal = new FastVector(totalInsts.numInstances());	//±£´æÁ÷±êÇ©ÔöÖ³ºóÑµÁ·¼¯µÄÁ÷±êÇ©
+		Attribute classAttr = totalInsts.attribute(totalInsts.numAttributes()-1);	//ä¿å­˜æµæ ‡ç­¾å±æ€§
+		FastVector classVal = new FastVector(totalInsts.numInstances());	//ä¿å­˜æµæ ‡ç­¾å¢æ®–åè®­ç»ƒé›†çš„æµæ ‡ç­¾
 		for (int i = 0; i < totalInsts.numInstances(); i++) {
 			classVal.addElement( totalInsts.instance(i).value(totalInsts.numAttributes()-1));	
 			
 		}
-		//¶ÔÊı¾İ¼¯½øĞĞ¾ÛÀà£¬²»ĞèÒªÁ÷±êÇ©£¬É¾³ı
+		//å¯¹æ•°æ®é›†è¿›è¡Œèšç±»ï¼Œä¸éœ€è¦æµæ ‡ç­¾ï¼Œåˆ é™¤
 		totalInsts.deleteAttributeAt(totalInsts.numAttributes()-1);
 		
-		//µ÷ÓÃWekaÖĞµÄK-MeansËã·¨½øĞĞ¾ÛÀà
-		SimpleKMeans KMean = new SimpleKMeans();	//ÊµÀı»¯K-Means·½·¨
+		//è°ƒç”¨Wekaä¸­çš„K-Meansç®—æ³•è¿›è¡Œèšç±»
+		SimpleKMeans KMean = new SimpleKMeans();	//å®ä¾‹åŒ–K-Meansæ–¹æ³•
 		
-		KMean.setNumClusters(this.numPreClusters);	//ÉèÖÃK-Means·½·¨¾ÛÀà´ØÊıÄ¿
+		KMean.setNumClusters(this.numPreClusters);	//è®¾ç½®K-Meansæ–¹æ³•èšç±»ç°‡æ•°ç›®
 		
-		KMean.setPreserveInstancesOrder(true);	//ÉèÖÃ¾ÛÀàÖ®ºóÊı¾İ¼¯±£³ÖÔ­À´µÄË³Ğò
+		KMean.setPreserveInstancesOrder(true);	//è®¾ç½®èšç±»ä¹‹åæ•°æ®é›†ä¿æŒåŸæ¥çš„é¡ºåº
 		
-		KMean.setDontReplaceMissingValues(true);	//ÉèÖÃ¾ÛÀàÊÇ²»Ìæ»»È·ÊµµÄÁ÷±êÇ©
+		KMean.setDontReplaceMissingValues(true);	//è®¾ç½®èšç±»æ˜¯ä¸æ›¿æ¢ç¡®å®çš„æµæ ‡ç­¾
 		
-		KMean.setSeed(100);	//ÉèÖÃ¾ÛÀàËæ»úÖÖ×ÓÊı
+		KMean.setSeed(100);	//è®¾ç½®èšç±»éšæœºç§å­æ•°
 		
-		KMean.buildClusterer(totalInsts);	//½¨Á¢¾ÛÀàÆ÷£¬¿ªÊ¼¾ÛÀà
+		KMean.buildClusterer(totalInsts);	//å»ºç«‹èšç±»å™¨ï¼Œå¼€å§‹èšç±»
 		
-		squaredError =  KMean.getSquaredError();	//µÃµ½¾ÛÀàÖ®ºóµÄÎó²îÆ½·½ºÍ
+		squaredError =  KMean.getSquaredError();	//å¾—åˆ°èšç±»ä¹‹åçš„è¯¯å·®å¹³æ–¹å’Œ
 		
-		clusterCentroids = KMean.getClusterCentroids();	//µÃµ½¾ÛÀà´ØµÄÖĞĞÄµã
+		clusterCentroids = KMean.getClusterCentroids();	//å¾—åˆ°èšç±»ç°‡çš„ä¸­å¿ƒç‚¹
 		
-		distanceFunction = KMean.getDistanceFunction();	//µÃµ½¾ÛÀàÊ¹ÓÃµÄ¾àÀë·½·¨Àà
+		distanceFunction = KMean.getDistanceFunction();	//å¾—åˆ°èšç±»ä½¿ç”¨çš„è·ç¦»æ–¹æ³•ç±»
 		
-		//¸´ÖÆÒÔÒ»¸öÁ÷±êÇ©±êÇ©ÊôĞÔ£¬ÓÃÀ´±£´æÔ­Ê¼Á÷±êÇ©
+		//å¤åˆ¶ä»¥ä¸€ä¸ªæµæ ‡ç­¾æ ‡ç­¾å±æ€§ï¼Œç”¨æ¥ä¿å­˜åŸå§‹æµæ ‡ç­¾
 		Attribute orginClassAttr = classAttr.copy("originClass");	
-		//ÑµÁ·¼¯Ôö¼Ó±£´æÔ­Ê¼Á÷±êÇ©µÄÊôĞÔ
+		//è®­ç»ƒé›†å¢åŠ ä¿å­˜åŸå§‹æµæ ‡ç­¾çš„å±æ€§
 		totalInsts.insertAttributeAt(orginClassAttr,totalInsts.numAttributes());
-		//ÑµÁ·¼¯Ôö¼Ó±£´æÁ÷±êÇ©ÔöÖ³ºóµÄÁ÷±êÇ©ÊôĞÔ
+		//è®­ç»ƒé›†å¢åŠ ä¿å­˜æµæ ‡ç­¾å¢æ®–åçš„æµæ ‡ç­¾å±æ€§
 		totalInsts.insertAttributeAt(classAttr,totalInsts.numAttributes());
-		//¸øÔö¼ÓµÄÔ­Ê¼Á÷±êÇ©ÊôĞÔ¸³Öµ
+		//ç»™å¢åŠ çš„åŸå§‹æµæ ‡ç­¾å±æ€§èµ‹å€¼
 		for (int i = 0; i < totalInsts.numInstances(); i++) {
 			double dou =  (double)(originLabel.elementAt(i));
-			if(Double.isNaN(dou))	//Êı¾İ¼¯Á÷±êÇ©ÊÇÈ±Ê§µÄ
+			if(Double.isNaN(dou))	//æ•°æ®é›†æµæ ‡ç­¾æ˜¯ç¼ºå¤±çš„
 			{
-				totalInsts.instance(i).setMissing(totalInsts.numAttributes()-2);	//ÉèÖÃÁ÷±êÇ©È±Ê§
+				totalInsts.instance(i).setMissing(totalInsts.numAttributes()-2);	//è®¾ç½®æµæ ‡ç­¾ç¼ºå¤±
 			}
-			else{	//²»È±Ê§£¬ÔòÉèÖÃ¶ÔÓ¦µÄÁ÷±êÇ©
+			else{	//ä¸ç¼ºå¤±ï¼Œåˆ™è®¾ç½®å¯¹åº”çš„æµæ ‡ç­¾
 				int index = (int)dou;
 				totalInsts.instance(i).setValue(totalInsts.numAttributes()-2, classAttr.value(index));
 			}
 		}
-		//¸øÔö¼ÓµÄÁ÷±êÇ©ÔöÖ³Ö®ºóµÄÁ÷±êÇ©ÊôĞÔ¸³Öµ
+		//ç»™å¢åŠ çš„æµæ ‡ç­¾å¢æ®–ä¹‹åçš„æµæ ‡ç­¾å±æ€§èµ‹å€¼
 		for (int i = 0; i < totalInsts.numInstances(); i++) {
 			double dou =  (double)(classVal.elementAt(i));
 			if(Double.isNaN(dou))
@@ -290,39 +290,39 @@ public class FlowsProClassifier {
 				totalInsts.instance(i).setValue(totalInsts.numAttributes()-1, classAttr.value(index));
 			}
 		}
-		//µÃµ½¾ÛÀàÖ®ºóµÄ¾ÛÀà´ØÊıÄ¿
+		//å¾—åˆ°èšç±»ä¹‹åçš„èšç±»ç°‡æ•°ç›®
 		numClusters = KMean.getNumClusters();
-		//µÃµ½¾ÛÀàÖ®ºóÃ¿¸öÁ÷±»·ÖÅäµ½µÄ¾ÛÀàid
+		//å¾—åˆ°èšç±»ä¹‹åæ¯ä¸ªæµè¢«åˆ†é…åˆ°çš„èšç±»id
 		int[] assignment = KMean.getAssignments();
 		
-		clusterClass = new int[numClusters];	//ÊµÀı»¯¾ÛÀà´Ø±êÇ©idÊı×é
-		clusterLabel = new String[numClusters];	//ÊµÀı»¯¾ÛÀà´Ø±êÇ©Êı×é
-		clusterGroup = new Instances[numClusters];	//ÊµÀı»¯¾ÛÀà´ØÊı×é
-		//ÊµÀı»¯Ã¿Ò»¾ÛÀà´Ø
+		clusterClass = new int[numClusters];	//å®ä¾‹åŒ–èšç±»ç°‡æ ‡ç­¾idæ•°ç»„
+		clusterLabel = new String[numClusters];	//å®ä¾‹åŒ–èšç±»ç°‡æ ‡ç­¾æ•°ç»„
+		clusterGroup = new Instances[numClusters];	//å®ä¾‹åŒ–èšç±»ç°‡æ•°ç»„
+		//å®ä¾‹åŒ–æ¯ä¸€èšç±»ç°‡
 		for (int i = 0; i < clusterGroup.length; i++) {
 			clusterGroup[i] = new Instances(totalInsts, -1);
 		}
-		//¸ù¾İ¾ÛÀàÊ±ºòÃ¿Ò»¸öÁ÷·ÖÅäµ½µÄ¾ÛÀàid£¬½«ÆäÌí¼Óµ½¶ÔÓ¦µÄ¾ÛÀà´ØÖĞ
+		//æ ¹æ®èšç±»æ—¶å€™æ¯ä¸€ä¸ªæµåˆ†é…åˆ°çš„èšç±»idï¼Œå°†å…¶æ·»åŠ åˆ°å¯¹åº”çš„èšç±»ç°‡ä¸­
 		for (int i = 0; i < assignment.length; i++) {
 			clusterGroup[assignment[i]].add(totalInsts.instance(i));
 		}
-		//Í³¼ÆÃ¿Ò»¸ö¾ÛÀà´ØÖĞµÄ¸ÅÂÊ×î´óµÄ±êÇ©Á÷£¬±ê¼Ç¾ÛÀà´ØÎª¶ÔÓ¦µÄ±êÇ©
+		//ç»Ÿè®¡æ¯ä¸€ä¸ªèšç±»ç°‡ä¸­çš„æ¦‚ç‡æœ€å¤§çš„æ ‡ç­¾æµï¼Œæ ‡è®°èšç±»ç°‡ä¸ºå¯¹åº”çš„æ ‡ç­¾
 		for (int i = 0; i < clusterGroup.length; i++) {
-			//¾ÛÀà´ØÖĞÈ±Ê§±êÇ©µÄÁ÷ÊıÄ¿
+			//èšç±»ç°‡ä¸­ç¼ºå¤±æ ‡ç­¾çš„æµæ•°ç›®
 			int unlabelcount = clusterGroup[i].attributeStats(totalInsts.numAttributes()-1).missingCount;
-			if(unlabelcount == clusterGroup[i].numInstances())	//¾ÛÀà´ØÖĞËùÓĞµÄÁ÷¶¼È±Ê§±êÇ©
+			if(unlabelcount == clusterGroup[i].numInstances())	//èšç±»ç°‡ä¸­æ‰€æœ‰çš„æµéƒ½ç¼ºå¤±æ ‡ç­¾
 			{
-				clusterClass[i] = -1;	//ÉèÖÃ¾ÛÀà´ØidÎª-1
-				clusterLabel[i] = "unknown";	//ÉèÖÃ¾ÛÀà´Ø±êÇ©Îªunknown
+				clusterClass[i] = -1;	//è®¾ç½®èšç±»ç°‡idä¸º-1
+				clusterLabel[i] = "unknown";	//è®¾ç½®èšç±»ç°‡æ ‡ç­¾ä¸ºunknown
 			}
-			else{	//Èç¹û¾ÛÀà´ØÖĞµÄÁ÷Ã»ÓĞÈ«²¿È±Ê§±êÇ©
-				//½«¾ÛÀà´ØidºÍ±êÇ©ÉèÖÃÎª¾ÛÀà´ØÖĞ¸ÅÂÊ×î´óµÄ±êÇ©£¬
+			else{	//å¦‚æœèšç±»ç°‡ä¸­çš„æµæ²¡æœ‰å…¨éƒ¨ç¼ºå¤±æ ‡ç­¾
+				//å°†èšç±»ç°‡idå’Œæ ‡ç­¾è®¾ç½®ä¸ºèšç±»ç°‡ä¸­æ¦‚ç‡æœ€å¤§çš„æ ‡ç­¾ï¼Œ
 				clusterClass[i] = Utils.maxIndex(clusterGroup[i].attributeStats(totalInsts.numAttributes()-1).nominalCounts);
 				clusterLabel[i] = totalInsts.attribute(totalInsts.numAttributes()-1).value(clusterClass[i]);
 			}
 		}
 
-		//Êä³öÃ¿Ò»¸ö¾ÛÀà´ØµÄÁ÷·ÖÅä
+		//è¾“å‡ºæ¯ä¸€ä¸ªèšç±»ç°‡çš„æµåˆ†é…
 		
 //		System.out.printf("%10s","");
 //		Enumeration enu =  totalInsts.attribute(totalInsts.numAttributes()-1).enumerateValues();
@@ -349,60 +349,60 @@ public class FlowsProClassifier {
 //		}
 		
 		
-		//ºÏ²¢¾ßÓĞÏàÍ¬±êÇ©µÄ¾ÛÀà´ØµÄidÁĞ±í
+		//åˆå¹¶å…·æœ‰ç›¸åŒæ ‡ç­¾çš„èšç±»ç°‡çš„idåˆ—è¡¨
 		ArrayList<Integer> clusterClassList = new ArrayList<Integer>();
-		//ºÏ²¢¾ßÓĞÏàÍ¬±êÇ©µÄ¾ÛÀà´ØµÄ±êÇ©ÁĞ±í
+		//åˆå¹¶å…·æœ‰ç›¸åŒæ ‡ç­¾çš„èšç±»ç°‡çš„æ ‡ç­¾åˆ—è¡¨
 		ArrayList<String> clusterLabelList = new ArrayList<String>();
-		//ºÏ²¢¾ßÓĞÏàÍ¬±êÇ©µÄ¾ÛÀà´ØµÄInstancesÁĞ±í
+		//åˆå¹¶å…·æœ‰ç›¸åŒæ ‡ç­¾çš„èšç±»ç°‡çš„Instancesåˆ—è¡¨
 		ArrayList<Instances> clusterInstList = new ArrayList<Instances>();
-		//ºÏ²¢¾ßÓĞÏàÍ¬±êÇ©µÄ¾ÛÀà´Ø
+		//åˆå¹¶å…·æœ‰ç›¸åŒæ ‡ç­¾çš„èšç±»ç°‡
 		for (int i = 0; i < clusterClass.length; i++) {
-			if(!clusterClassList.contains(clusterClass[i])){//idÁĞ±íÖĞ²»º¬ÓĞµ±Ç°¾ÛÀà´ØµÄid
-				clusterClassList.add(clusterClass[i]);	//Ìí¼Óµ½idÁĞ±í
-				clusterLabelList.add(clusterLabel[i]);	//Ìí¼Óµ½±êÇ©ÁĞ±í
-				clusterInstList.add(clusterGroup[i]);	//Ìí¼Óµ½InstancesÁĞ±í
+			if(!clusterClassList.contains(clusterClass[i])){//idåˆ—è¡¨ä¸­ä¸å«æœ‰å½“å‰èšç±»ç°‡çš„id
+				clusterClassList.add(clusterClass[i]);	//æ·»åŠ åˆ°idåˆ—è¡¨
+				clusterLabelList.add(clusterLabel[i]);	//æ·»åŠ åˆ°æ ‡ç­¾åˆ—è¡¨
+				clusterInstList.add(clusterGroup[i]);	//æ·»åŠ åˆ°Instancesåˆ—è¡¨
 			}
-			else{	//idÁĞ±íÖĞÒÑº¬ÓĞµ±Ç°¾ÛÀà´Øid
-				int tmpInt = clusterClassList.indexOf(clusterClass[i]);	//ÕÒµ½¶ÔÓ¦±êÇ©idÔÚÁĞ±íÖĞµÄÎ»ÖÃ
-				//ºÏ²¢µ±Ç°¾ÛÀà´ØÓë¶ÔÓ¦Î»ÖÃµÄInstancesºÏ²¢
+			else{	//idåˆ—è¡¨ä¸­å·²å«æœ‰å½“å‰èšç±»ç°‡id
+				int tmpInt = clusterClassList.indexOf(clusterClass[i]);	//æ‰¾åˆ°å¯¹åº”æ ‡ç­¾idåœ¨åˆ—è¡¨ä¸­çš„ä½ç½®
+				//åˆå¹¶å½“å‰èšç±»ç°‡ä¸å¯¹åº”ä½ç½®çš„Instancesåˆå¹¶
 				Instances tmpInst = this.combineInstances(clusterInstList.get(tmpInt), clusterGroup[i]);
-				//Ìæ»»¶ÔÓ¦Î»ÖÃµÄInstances
+				//æ›¿æ¢å¯¹åº”ä½ç½®çš„Instances
 				clusterInstList.set(tmpInt, tmpInst);
 			}
 			
 		} 
 		
-		//Êä³ö¾ÛÀà´ØºÏ²¢Ö®ºóµÄ½á¹û
+		//è¾“å‡ºèšç±»ç°‡åˆå¹¶ä¹‹åçš„ç»“æœ
 		System.out.println("*****************************");		
-		int numKnown = 0;	//ËùÓĞÒÑÖª±êÇ©µÄ¾ÛÀà´Ø°üº¬µÄÁ÷µÄ×ÜÊıÄ¿
+		int numKnown = 0;	//æ‰€æœ‰å·²çŸ¥æ ‡ç­¾çš„èšç±»ç°‡åŒ…å«çš„æµçš„æ€»æ•°ç›®
 		for (int i = 0; i < clusterClassList.size(); i++) {
 			if(clusterLabelList.get(i).equals("unknown"))
 			{
-				//ÑµÁ·¼¯×ÜÊıÄ¿¼õÈ¥Î´Öª¾ÛÀà´Ø¼¯µÄÖĞµÄÁ÷µÄ×ÜÊıÄ¿
+				//è®­ç»ƒé›†æ€»æ•°ç›®å‡å»æœªçŸ¥èšç±»ç°‡é›†çš„ä¸­çš„æµçš„æ€»æ•°ç›®
 				numKnown = totalInsts.numInstances() - clusterInstList.get(i).numInstances();	
 			}
-			//Êä³ö¾ÛÀà´ØºÏ²¢Ö®ºóµÄ½á¹û
+			//è¾“å‡ºèšç±»ç°‡åˆå¹¶ä¹‹åçš„ç»“æœ
 			System.out.println("cluster"+i+"->"+clusterLabelList.get(i)+"("+clusterInstList.get(i).numInstances()+")");
 		}
-		//ÕıÈ·Ê¶±ğµÄÁ÷µÄÊıÄ¿
+		//æ­£ç¡®è¯†åˆ«çš„æµçš„æ•°ç›®
 		int correctFlows = 0;
-		//¼ÆËãÕıÈ·Ê¶±ğµÄÁ÷µÄÊıÄ¿
+		//è®¡ç®—æ­£ç¡®è¯†åˆ«çš„æµçš„æ•°ç›®
 		for (int i = 0; i < clusterInstList.size(); i++) {
 			Instances tmp =  clusterInstList.get(i);
 			int itmp = clusterClassList.get(i);
 			for (int j = 0; j < tmp.numInstances(); j++) {
-				//µÃµ½Ã¿Ò»¸öÁ÷µÄÔ­Ê¼±êÇ©id
+				//å¾—åˆ°æ¯ä¸€ä¸ªæµçš„åŸå§‹æ ‡ç­¾id
 				double dtmp = tmp.instance(j).value(totalInsts.numAttributes()-2);	
 				if(itmp == -1)	
 				{
-					if(Double.isNaN(dtmp)){	//ÕıÈ·Ê¶±ğÎ´ÖªÁ÷
+					if(Double.isNaN(dtmp)){	//æ­£ç¡®è¯†åˆ«æœªçŸ¥æµ
 						correctFlows++;
 					}
 				}
 				else
 				{
 					int idtmp = (int)dtmp;
-					if(itmp == idtmp){	//ÕıÈ·Ê¶±ğ¶ÔÓ¦±êÇ©Á÷
+					if(itmp == idtmp){	//æ­£ç¡®è¯†åˆ«å¯¹åº”æ ‡ç­¾æµ
 						correctFlows++;
 					}
 				}
@@ -418,15 +418,15 @@ public class FlowsProClassifier {
 	}
 	
 	
-	//·ÖÀàÊ¶±ğµ¥¸öÍøÂçÁ÷
+	//åˆ†ç±»è¯†åˆ«å•ä¸ªç½‘ç»œæµ
 	public int classifyFlow(Instance inst)
 	{
-		double minDist = Integer.MAX_VALUE;	//Ã¿Ò»¸öÁ÷¾ÛÀà¾ÛÀàÖĞĞÄµãµÄ×îĞ¡¾àÀë
-		int bestCluster = 0;	//Á÷±»Ê¶±ğµÄ±êÇ©id
+		double minDist = Integer.MAX_VALUE;	//æ¯ä¸€ä¸ªæµèšç±»èšç±»ä¸­å¿ƒç‚¹çš„æœ€å°è·ç¦»
+		int bestCluster = 0;	//æµè¢«è¯†åˆ«çš„æ ‡ç­¾id
 		for (int i = 0; i < clusterCentroids.numInstances(); i++) {
 			
 			 double dist = distanceFunction.distance(inst, clusterCentroids.instance(i));
-			 //ÕÒµ½×îĞ¡¾àÀë¶ÔÓ¦µÄ±êÇ©id
+			 //æ‰¾åˆ°æœ€å°è·ç¦»å¯¹åº”çš„æ ‡ç­¾id
 		     if (dist < minDist) {
 		    	 minDist = dist;
 		    	 bestCluster = i;
@@ -435,23 +435,23 @@ public class FlowsProClassifier {
 		return bestCluster;
 	}
 	
-	//ÓÃ·ÖÀàÆ÷¶Ô²âÊÔÊı¾İ¼¯½øĞĞ·ÖÀà£¬ÆÀ¼Û·ÖÀàÆ÷µÄ·ÖÀàĞÔÄÜ
+	//ç”¨åˆ†ç±»å™¨å¯¹æµ‹è¯•æ•°æ®é›†è¿›è¡Œåˆ†ç±»ï¼Œè¯„ä»·åˆ†ç±»å™¨çš„åˆ†ç±»æ€§èƒ½
 	public void evaluateClassifier(Instances insts){
-		//²âÊÔÊı¾İ¼¯ÖĞÈ±Ê§±êÇ©µÄÁ÷µÄÊıÄ¿
+		//æµ‹è¯•æ•°æ®é›†ä¸­ç¼ºå¤±æ ‡ç­¾çš„æµçš„æ•°ç›®
 		int numTestUnknowFlows = insts.attributeStats(insts.numAttributes()-1).missingCount;
-		//²âÊÔÊı¾İ¼¯ÖĞÒÑÖª±êÇ©µÄÁ÷µÄÊıÄ¿
+		//æµ‹è¯•æ•°æ®é›†ä¸­å·²çŸ¥æ ‡ç­¾çš„æµçš„æ•°ç›®
 		int numTestKnowFlows = insts.numInstances() - numTestUnknowFlows;
-		//±£´æ²âÊÔÊı¾İ¼¯µÄ±êÇ©ÊôĞÔ
+		//ä¿å­˜æµ‹è¯•æ•°æ®é›†çš„æ ‡ç­¾å±æ€§
 		Attribute classAttr = insts.attribute(insts.numAttributes()-1);
-		//²âÊÔÊı¾İ¼¯µÄ±êÇ©ÊôĞÔµÄÖÖÀàÊıÄ¿
+		//æµ‹è¯•æ•°æ®é›†çš„æ ‡ç­¾å±æ€§çš„ç§ç±»æ•°ç›®
 		int numofAttrVal = classAttr.numValues();
-		//Ã¿Ò»ÖÖÖÖÀàµÄ±êÇ©µÄ·ÖÀàÊ¶±ğÊı×é£¬°üÀ¨unknown
+		//æ¯ä¸€ç§ç§ç±»çš„æ ‡ç­¾çš„åˆ†ç±»è¯†åˆ«æ•°ç»„ï¼ŒåŒ…æ‹¬unknown
 		int[][] preNum = new int[numofAttrVal+1][numofAttrVal+1];
-		//ÆÀ¼ÛÖ¸±ê
+		//è¯„ä»·æŒ‡æ ‡
 		String[] rateName = {"TP Rate","FP Rate","Precision","Recall","F-Measure"};
-		//Ã¿Ò»ÖÖ±êÇ©µÄ·ÖÀàÆÀ¼ÛÖ¸±êÊı×é
+		//æ¯ä¸€ç§æ ‡ç­¾çš„åˆ†ç±»è¯„ä»·æŒ‡æ ‡æ•°ç»„
 		double[][] allRate = new double[numofAttrVal+1][rateName.length];
-		//±£´æ²âÊÔÊı¾İ¼¯µÄ±êÇ©ÊôĞÔÖµ
+		//ä¿å­˜æµ‹è¯•æ•°æ®é›†çš„æ ‡ç­¾å±æ€§å€¼
 		FastVector classVal = new FastVector(insts.numInstances());
 		for (int j = 0; j < insts.numInstances(); j++) {
 			double douA = insts.instance(j).value(insts.numAttributes()-1);
@@ -464,60 +464,60 @@ public class FlowsProClassifier {
 			}
 			
 		}
-		//É¾³ı²âÊÔÊı¾İ¼¯µÄ±êÇ©ÊôĞÔ
+		//åˆ é™¤æµ‹è¯•æ•°æ®é›†çš„æ ‡ç­¾å±æ€§
 		insts.deleteAttributeAt(insts.numAttributes()-1);
-		//Ã¿Ò»Á÷Ô¤²âµÄ±êÇ©ÊôĞÔÖµ
+		//æ¯ä¸€æµé¢„æµ‹çš„æ ‡ç­¾å±æ€§å€¼
 		FastVector preClassVal = new FastVector(insts.numInstances());
-		//¶ÔÃ¿Ò»¸öÁ÷½øĞĞÊ¶±ğ£¬±£´æÊ¶±ğµÄ±êÇ©Ö½
+		//å¯¹æ¯ä¸€ä¸ªæµè¿›è¡Œè¯†åˆ«ï¼Œä¿å­˜è¯†åˆ«çš„æ ‡ç­¾çº¸
 		for (int i = 0; i < insts.numInstances(); i++) {
 			preClassVal.addElement((double)clusterClass[this.classifyFlow(insts.instance(i))]);
 		}
-		int numOfAccuracy = 0;	//ÕıÈ·Ê¶±ğµÄÁ÷µÄÊıÄ¿
-		//½«Ô¤²â±êÇ©ÊôĞÔÖµÓöÔ­Ê¼µÄ±êÇ©ÊôĞÔÖµ½øĞĞ¶Ô±È£¬Èç¹ûÏàÍ¬ÕıÈ·Ê¶±ğµÄÁ÷ÊıÄ¿¼Ó1
+		int numOfAccuracy = 0;	//æ­£ç¡®è¯†åˆ«çš„æµçš„æ•°ç›®
+		//å°†é¢„æµ‹æ ‡ç­¾å±æ€§å€¼é‡åŸå§‹çš„æ ‡ç­¾å±æ€§å€¼è¿›è¡Œå¯¹æ¯”ï¼Œå¦‚æœç›¸åŒæ­£ç¡®è¯†åˆ«çš„æµæ•°ç›®åŠ 1
 		for (int i = 0; i < insts.numInstances(); i++) {
-			if((double)classVal.elementAt(i)==-1.0){	//Î´ÖªÁ÷
-				if((double)(preClassVal.elementAt(i))==-1.0){	//Î´ÖªÁ÷ÕıÈ·Ê¶±ğ
+			if((double)classVal.elementAt(i)==-1.0){	//æœªçŸ¥æµ
+				if((double)(preClassVal.elementAt(i))==-1.0){	//æœªçŸ¥æµæ­£ç¡®è¯†åˆ«
 					preNum[numofAttrVal][numofAttrVal]++;
-				}else{	//Î´ÖªÁ÷´íÎóÊ¶±ğ
+				}else{	//æœªçŸ¥æµé”™è¯¯è¯†åˆ«
 					preNum[numofAttrVal][(int)(double)(preClassVal.elementAt(i))]++;
 				}
 			}
-			else{	//ÒÑÖª±êÇ©µÄÁ÷
-				if((double)(preClassVal.elementAt(i))==-1.0){	//ÒÑÖª±êÇ©Á÷Ê¶±ğÎªÎ´ÖªÁ÷
+			else{	//å·²çŸ¥æ ‡ç­¾çš„æµ
+				if((double)(preClassVal.elementAt(i))==-1.0){	//å·²çŸ¥æ ‡ç­¾æµè¯†åˆ«ä¸ºæœªçŸ¥æµ
 					preNum[(int)(double)(classVal.elementAt(i))][numofAttrVal]++;
-				}else{	//ÒÑÖª±êÇ©Á÷Ê¶±ğÎªÒÑÖª±êÇ©Á÷£¬°üÀ¨ÕıÈ·Ê¶±ğ
+				}else{	//å·²çŸ¥æ ‡ç­¾æµè¯†åˆ«ä¸ºå·²çŸ¥æ ‡ç­¾æµï¼ŒåŒ…æ‹¬æ­£ç¡®è¯†åˆ«
 					preNum[(int)(double)(classVal.elementAt(i))][(int)(double)(preClassVal.elementAt(i))]++;
 				}
 			}
-			//ÕıÈ·Ê¶±ğºó£¬ÕıÈ·Ê¶±ğÊıÄ¿¼Ó1
+			//æ­£ç¡®è¯†åˆ«åï¼Œæ­£ç¡®è¯†åˆ«æ•°ç›®åŠ 1
 			if((double)(classVal.elementAt(i))==(double)(preClassVal.elementAt(i)))
 			{
 				numOfAccuracy++;
 			}
 		}
 				
-		//Ã¿Ò»ÖÖÁ÷µÄ·ÖÀàÊ¶±ğµÄ×ªÖÃÊı×é
+		//æ¯ä¸€ç§æµçš„åˆ†ç±»è¯†åˆ«çš„è½¬ç½®æ•°ç»„
 		int[][] rotatePreNum = new int[numofAttrVal+1][numofAttrVal+1];
-		//¸ø×ªÖÃÊı×é¸³Öµ
+		//ç»™è½¬ç½®æ•°ç»„èµ‹å€¼
 		for (int i = 0; i < rotatePreNum.length; i++) {
 			for (int k = 0; k < rotatePreNum[0].length; k++) {
 				rotatePreNum[i][k] = preNum[k][i];
 			}
 		}
-		//ÕıÈ·Ê¶±ğµÄÎ´ÖªÁ÷µÄÊıÄ¿
+		//æ­£ç¡®è¯†åˆ«çš„æœªçŸ¥æµçš„æ•°ç›®
 		int numAccPreUnkonw = preNum[numofAttrVal][numofAttrVal];
-		//ÒÑÖª±êÇ©Á÷±»Ê¶±ğÎªÎ´ÖªÁ÷µÄÊıÄ¿
+		//å·²çŸ¥æ ‡ç­¾æµè¢«è¯†åˆ«ä¸ºæœªçŸ¥æµçš„æ•°ç›®
 		int numKnownPreUnknown = Utils.sum(rotatePreNum[numofAttrVal]) - numAccPreUnkonw;
 		
 		System.out.println("False Detection Rate:" + numKnownPreUnknown/(double)numTestKnowFlows);
 		System.out.println("True Detection Rate:" + 
 				((numTestUnknowFlows==0) ? 0 : numAccPreUnkonw/(double)numTestUnknowFlows));
-		//¼ÆËã¸÷ÖÖÆÀ¼ÛÖ¸±ê
+		//è®¡ç®—å„ç§è¯„ä»·æŒ‡æ ‡
 		for (int i = 0; i < allRate.length; i++) {
-			int tp = preNum[i][i];	//TPÖµ
-			int fn = Utils.sum(preNum[i])-tp;	//FNÖµ
-			int fp = Utils.sum(rotatePreNum[i])-tp;	//FPÖµ
-			int tn = insts.numInstances()-(tp+fn+fp);	//TNÖµ
+			int tp = preNum[i][i];	//TPå€¼
+			int fn = Utils.sum(preNum[i])-tp;	//FNå€¼
+			int fp = Utils.sum(rotatePreNum[i])-tp;	//FPå€¼
+			int tn = insts.numInstances()-(tp+fn+fp);	//TNå€¼
 			
 			allRate[i][0] = ((tp+fn)==0) ? 0 : (tp/(double)(tp+fn));	//TP Rate
 			allRate[i][1] = ((fp+tn)==0) ? 0 : (fp/(double)(fp+tn));	//FP Rate
@@ -527,7 +527,7 @@ public class FlowsProClassifier {
 		}
 		
 		System.out.println("=== Detailed Accuracy By Class ===");
-		//Êä³öÃ¿Ò»ÖÖ±êÇ©µÄ¸÷ÖÖÆÀ¼ÛÖ¸±ê
+		//è¾“å‡ºæ¯ä¸€ç§æ ‡ç­¾çš„å„ç§è¯„ä»·æŒ‡æ ‡
 		System.out.printf("%10s","");
 		for (int i = 0; i < rateName.length; i++) {
 			System.out.printf("%10s",rateName[i]);
@@ -548,7 +548,7 @@ public class FlowsProClassifier {
 		}
 		
 		System.out.println("=== Confusion Matrix ===");
-		//Êä³öÃ¿Ò»ÖĞ±êÇ©µÄ·ÖÀàÇé¿ö
+		//è¾“å‡ºæ¯ä¸€ä¸­æ ‡ç­¾çš„åˆ†ç±»æƒ…å†µ
 		System.out.printf("%10s","");
 		for (int i = 0; i < numofAttrVal; i++) {
 			System.out.printf("%10s",classAttr.value(i));

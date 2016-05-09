@@ -15,11 +15,11 @@ public class Main {
 		try {
 			test.testClassifier();
 		} catch (FileNotFoundException e) {
-			System.out.println("ÕÒ²»µ½ÓëÊäÈëÊı¾İÆ¥ÅäµÄÎÄ¼ş");
+			System.out.println("æ‰¾ä¸åˆ°ä¸è¾“å…¥æ•°æ®åŒ¹é…çš„æ–‡ä»¶");
 		} catch (IOException e) {
-			System.out.println("ÎÄ¼ş¸ñÊ½´íÎó£¡");
+			System.out.println("æ–‡ä»¶æ ¼å¼é”™è¯¯ï¼");
 		} catch (Exception e) {
-			System.out.println("Êı¾İÊäÈëÓĞÎó£¡");
+			System.out.println("æ•°æ®è¾“å…¥æœ‰è¯¯ï¼");
 		}
 	}
 
